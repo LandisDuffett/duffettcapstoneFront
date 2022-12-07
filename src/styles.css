@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+#loginBtn {
+    border: 2px solid white;
+}
+
+.btn, .form-control, .card-body {
+    border: 2px solid black;
+}
+
+/*
+.table {
+    border-radius: 5%;
+    border: 2px solid black;
+}*/
+
+.card-header {
+    border: 2px solid black;
+    border-bottom: 0px solid black;
+}
+
+/*
+td {
+    border-color: black;
+    border-style: solid;
+    border-width: 2px 1px 2px;
+}*/
+
+.adB {
+    width: 80%;
+}
+
+.card-footer {
+    border: 2px solid black;
+    border-top: 0px solid black;
+}
+
+/*
+tbody, tfoot, th, thead, tr {
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+}*/
+
+td {
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+}
+
+.empreqB1 {
+    margin-left: 4px;
+}
+
+.empreqB2 {
+    margin-left: 8px;
+}
+
+.viz {
+    display: flex;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 575px) {
+    .btn {
+        font-size: 0.65rem;
+    }
+    table {
+        font-size:.5rem;
+    }
+    .imagecol, .reqtimecol {
+        display: none;
+    }
+
+}
+
+
+
+
+
+

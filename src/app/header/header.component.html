@@ -1,0 +1,34 @@
+<div>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="javascript:void(0)">CMU-Admin</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item" *ngIf="hasLoggedIn() && getRole()=='admin'">
+                <a class="nav-link" routerLink="view-requests">View Requests by Status</a>
+              </li>
+              <li class="nav-item" *ngIf="hasLoggedIn() && getRole()=='admin'">
+                <a class="nav-link" routerLink="view-employees">View Employee Information/Requests</a>
+              </li>
+              <li class="nav-item" *ngIf="hasLoggedIn() && getRole()=='employee'">
+                <a class="nav-link" routerLink="my-requests">My Requests</a>
+              </li>
+              <li class="nav-item" *ngIf="hasLoggedIn() && getRole()=='employee'">
+                <a class="nav-link" routerLink="my-info">View/Edit My Personal Information</a>
+              </li>
+              <li class="nav-item" *ngIf="!hasLoggedIn()">
+                <a class="nav-link" routerLink="login">Login</a>
+              </li>
+              <li class="nav-item" *ngIf="hasLoggedIn()">
+                <a class="nav-link" routerLink="logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="navbar-brand" style="font-size: xx-small;">LDuffett</div>
+
+      </nav>
+</div>

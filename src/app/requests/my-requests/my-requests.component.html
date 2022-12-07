@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="text-center row mt-5">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div *ngIf="!myRequestMessage" class="row justify-content-center">
+                <button type="button" class="btn btn2 btn-primary m-2 w-25" (click)="displayAllMyReq()">View All
+                </button>
+                <ng-container *ngIf="!myRequestMessage && pendingButton">
+                    <button type="button" class="btn btn2 btn-primary m-2 w-25" (click)="displayMyPendReq()">View
+                        Pending
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="!myRequestMessage && resolvedButton">
+                    <button type="button" class="btn btn2 btn-primary m-2 w-25" (click)="displayMyResReq()">View
+                        Resolved
+                    </button>
+                </ng-container>
+            </div>
+            <button type="button" class="btn btn2 btn-success m-2 w-25" (click)="displayReqForm()">Submit New Request
+            </button>
+        </div>
+        <div *ngIf="shouldDisplay">
+            <div class="container">
+                <form>
+                    <div class="card m-3">
+                        <div class="card-header bg-success">REQUEST FORM</div>
+                        <div class="card-body">
+                            <div class="mb-3 mt-3">
+                                <label for="rAmount" class="form-label">Request Amount:</label>
+                                <input type="number" class="form-control" id="rAmount"
+                                    placeholder="Enter request amount" name="reqAmt"
+                                    [(ngModel)]="newRequest.requestAmount" #rAmt="ngModel" required>
+
+                                <div *ngIf="!rAmt.valid && rAmt.touched" class="text-danger small">
+                                    Request Amount is required!
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="rDescription" class="form-label">Request Description:</label>
+                                <input type="text" class="form-control" id="rDescription"
+                                    placeholder="Enter Request Description" name="reqDes"
+                                    [(ngModel)]="newRequest.requestDescription" #rDes="ngModel" required>
+
+                                <div *ngIf="!rDes.valid && rDes.touched" class="text-danger small">
+                                    Request Description is required!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-success">
+                            <button type="button" class="btn btn-warning" (click)="addANewRequest()">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <h2 class="title">My Requests</h2>
+            <div *ngIf="myRequestMessage!=''">
+                <h3>{{ myRequestMessage }}</h3>
+            </div>
+            <table class="table table-striped" *ngIf="displayAll">
+                <thead class="bg-secondary">
+                    <tr class="text-white">
+                        <td>REQUEST ID</td>
+                        <td>EMPLOYEE ID</td>
+                        <td>AMOUNT</td>
+                        <td>DESCRIPTION</td>
+                        <td>STATUS</td>
+                        <td>REQUEST TIME</td>
+                        <td>RESOLVED TIME</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let request of currentMyRequests">
+                        <td>{{ request.requestId }}</td>
+                        <td>{{ request.requestUserId }}</td>
+                        <td>{{ request.requestAmount }}</td>
+                        <td>{{ request.requestDescription }}</td>
+                        <td>{{ request.requestStatus }}</td>
+                        <td>{{ request.requestTime }}</td>
+                        <td>{{ request.resolvedTime }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped" *ngIf="displayPend">
+                <thead class="bg-secondary">
+                    <tr class="text-white">
+                        <td>REQUEST ID</td>
+                        <td>EMPLOYEE ID</td>
+                        <td>AMOUNT</td>
+                        <td>DESCRIPTION</td>
+                        <td>STATUS</td>
+                        <td>REQUEST TIME</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let request of currentPendRequests">
+                        <td>{{ request.requestId }}</td>
+                        <td>{{ request.requestUserId }}</td>
+                        <td>{{ request.requestAmount }}</td>
+                        <td>{{ request.requestDescription }}</td>
+                        <td>{{ request.requestStatus }}</td>
+                        <td>{{ request.requestTime }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped" *ngIf="displayRes">
+                <thead class="bg-secondary">
+                    <tr class="text-white">
+                        <td>REQUEST ID</td>
+                        <td>EMPLOYEE ID</td>
+                        <td>AMOUNT</td>
+                        <td>DESCRIPTION</td>
+                        <td>STATUS</td>
+                        <td>REQUEST TIME</td>
+                        <td>RESOLVED TIME</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let request of currentResRequests">
+                        <td>{{ request.requestId }}</td>
+                        <td>{{ request.requestUserId }}</td>
+                        <td>{{ request.requestAmount }}</td>
+                        <td>{{ request.requestDescription }}</td>
+                        <td>{{ request.requestStatus }}</td>
+                        <td>{{ request.requestTime }}</td>
+                        <td>{{ request.resolvedTime }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+</div>

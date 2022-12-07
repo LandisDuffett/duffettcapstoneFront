@@ -1,0 +1,144 @@
+to run the demo angular project in your local machine
+----------------------------------------------------
+    - clone the project to your local
+    - this does not have the node_modules
+    - but we need the node_modules to run the application
+    - run the command "npm install" in the cmd and this will install the node_modules folder ( be inside the project folder)
+    - this command will look into the package.json and install the node_modules
+
+web application
+
+	- had multiple pages in it
+	- MPA 
+
+
+front end application backend application
+
+MPA - Multi page application
+
+SPA - Single Page Application
+	- the entire application has only one page
+	- we manipulate the DOM of this page to make it dynamic
+	- JS is the best choice to manipulate DOM
+	- using plain vanilla JS is not feasible to manipuilate the DOM
+	- here frameworks make it easier for us
+	- we can use angular framework to create SPA
+	- angular uses typescript, typscript is a super set of javascript
+    - typescript files are saved with .ts
+    - browsers never understand typescript, 
+    - so typescript is transpiled to java script when the application is built
+
+	- in order to work with angular we need to install angular/cli
+	- to install angular cli we need npm(node package manager)
+	- we get npm by installing node js
+
+to check the verison of nodejs
+	 node --version
+to check the version of npm
+	 npm --version
+install angular/cli using npm, this will install the latest version of angular
+	 npm install -g @angular/cli
+check the version of angular installed
+	ng version
+we are now good to create an angular project in the cmd using the ng command, create a folder for your project
+	ng new my-hello-angular
+		choose y for angular routing
+		choose CSS for stylesheet
+now a new angular project is created, open this project in vscode
+in cmd, navigate to the angular project folder and start the angular live developemnt server
+	ng serve
+
+- angular is all about components
+- {{ }} string interpolation
+    - we can render a property from the component.ts file into the template using string interpolation
+
+- we are good to create our own components
+- we are going to create a component DisplayComponent
+- there are 4 files associated with a compnent
+    <comp>.component.ts
+    <comp>.component.html
+    <comp>.component.css
+    <comp>.component.spec.ts
+
+- steps to create a component
+    1) create the files for the component
+    2) include the component in app.module.ts file
+    3) use the component's selector
+
+- 2 ways to create a component
+    - manually create all the files - tedious
+    - or could use the commmand ng generate component
+            ng generate component display
+            ng g c display
+            this command will automatically make an entry in the app.module.ts
+
+strong interview questions
+-----------------------------
+
+string interpolation {{ }} - we were able to render a property of the component in the template
+
+property binding [] - we were able to bind a property of the component to the value attribute of the text box in the template
+
+event binding () - we bind an event in the template to a function in the component class
+
+one way property binding - the property in the component class is bound to the template and not vice versa
+                        - we use {{ }} or []
+two way property binding - the property int the component class is bound to the template and vice versa
+                        - we use ngModel for 2 way property binding
+                        - to use ngModel, we have to include FormsModule under the imports attribute of app.module.ts
+                        - eg CounterComponent
+angular routing
+------------------
+    - each component is provided a route path
+
+
+    steps for routing with HeaderComponent
+        1) provie a route path to each component in the app-routing.module.ts
+        2) Create a HeaderComponent with anchor tags and place it on AppComponent
+        3) specify the route path of the component when the anchor tags using routerLink are clicked
+        4) specify the <router-outlet>
+        5) use routerLink instead of href for anchor tags, we dont want the entire page to be reloaded from the server
+        6) there is more to routing -  will discuss later
+
+    3 ways to route to a component
+        - directly type the route path in the url - we dont do this
+        - use anchor tags with routerLink
+        - use Router api
+
+
+
+ngModel - creates a FormControl object
+
+we can create form in 2 different ways
+---------------------------------------
+1) Template driven forms
+    - we used this in the session
+    - within the form tag each input element has a ngModel which creates FormControl object
+    - This FormControl object holds the entire info about the input element
+2) Reactive forms
+    - we do not use ngModel here, instaed we create the FormControl object in the component class
+    - more coding than template driven forms
+
+Complete topics of Angular
+--------------------------
+    - Components
+    - Directives( in built and custom)
+    - Modules
+    - Forms - Template or Reactive
+    - Form Validations
+    - Pipes(in built and custom)
+    - HttpClient
+    - routing with RouteGaurds
+    - EventEmitters
+
+Route Gaurds
+------------
+    - we are working with CanActivate Route Guard
+    - create the guard using the command 
+            ng g g users/authentication
+    - write the logic for the guard
+    - configure the guard for the components which needs login validation
+    - for this in app.routing.module.ts file include these lines for the components which requires route guards
+        { path: "display", component: DisplayComponent, canActivate: AuthenticationGuard] }
+    - now we can test by trying to access the components without logging in
+        - for this type the route path of the component directly in the url

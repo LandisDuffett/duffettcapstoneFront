@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row mt-5">
+        <div *ngIf="userMessage!=''">
+            <h3>{{userMessage}}</h3>
+        </div>
+        <div class="col-12" *ngIf="!userMessage && displayAll">
+            <h2 class="title">Employees</h2>
+            <table class="table table-striped">
+                <thead class="bg-secondary">
+                    <tr class="text-white">
+                        <td>EMPLOYEE ID</td>
+                        <td>FIRST NAME</td>
+                        <td>LAST NAME</td>
+                        <td>EMAIL</td>
+                        <td>PASSWORD</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of currentEmployees">
+                        <td>{{ user.userId }}</td>
+                        <td>{{ user.userFirstName }}</td>
+                        <td>{{ user.userLastName }}</td>
+                        <td>{{ user.userEmail }}</td>
+                        <td>{{ user.userPassword }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary"
+                                (click)="displayOneReqs(user.userId, user.userFirstName, user.userLastName)">
+                                View Requests
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center" *ngIf="userRequestMessage!='' && oneEmpError">
+            <button type="button" class="btn btn-danger m-2" (click)="goBack()">
+                Back to Employees
+            </button>
+            <h3>{{userRequestMessage}}</h3>
+        </div>
+        <div class="col-12 text-center" *ngIf="!userRequestMessage && displayEmpReqs">
+            <h2 class="title">Requests submitted by {{currUsrLN}}, {{currUsrFN}}</h2>
+            <button type="button" class="btn btn-danger m-2" (click)="goBack()">
+                Back to Employees
+            </button>
+            <table class="table table-striped">
+                <thead class="bg-secondary">
+                    <tr class="text-white">
+                        <td>REQUEST ID</td>
+                        <td>EMP ID</td>
+                        <td>AMOUNT</td>
+                        <td>DESCRIPTION</td>
+                        <td>STATUS</td>
+                        <td>REQUEST TIME</td>
+                        <td>RESOLVED TIME</td>
+                        <ng-container *ngIf="displayAction">
+                            <td>ACTION</td>
+                        </ng-container>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let request of currentEmpRequests">
+                        <td>{{ request.requestId }}</td>
+                        <td>{{ request.requestUserId }}</td>
+                        <td>{{ request.requestAmount }}</td>
+                        <td>{{ request.requestDescription }}</td>
+                        <td>{{ request.requestStatus }}</td>
+                        <td>{{ request.requestTime }}</td>
+                        <td>{{ request.resolvedTime }}</td>
+                        <td>
+                            <ng-container *ngIf="request.requestStatus=='pending'">
+
+                                <button type="button" class="btn adB btn-danger m-2 p-2"
+                                    (click)="goToEditRequest(request, 'approved')">
+                                    Approve
+                                </button>
+                                <button type="button" class="btn adB btn-danger m-2 p-2"
+                                    (click)="goToEditRequest(request, 'denied')">
+                                    Deny
+                                </button>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+    <form #myForm="ngForm">
+        <div class="card m-3">
+            <div class="card-header bg-primary text-white">LOGIN FORM</div>
+            <div class="card-body">
+                <div class="mb-3 mt-3">
+                    <label for="uUserName" class="form-label">User Email:</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="UserEmail" 
+                        placeholder="Enter user email" 
+                        name="userEmail"
+                        [(ngModel)]="user.userEmail" 
+                        required 
+                        #usrEmail="ngModel">
+                    <div *ngIf="!usrEmail.valid && usrEmail.touched" class="text-danger small">
+                        User name is required!
+                    </div>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="uPassword" class="form-label">Password:</label>
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        id="uPassword" 
+                        placeholder="Enter password"
+                        name="password" 
+                        [(ngModel)]="user.userPassword" 
+                        required 
+                        #usrPassword="ngModel">
+                    <div *ngIf="!usrPassword.valid && usrPassword.touched" class="text-danger small">
+                        Password is required!
+                    </div>
+                </div>
+                <div class="card-footer bg-primary">
+                    <button id="loginBtn" type="button" class="btn btn-danger" (click)="loginValidation()"
+                        [disabled]="!myForm.valid">Login</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
