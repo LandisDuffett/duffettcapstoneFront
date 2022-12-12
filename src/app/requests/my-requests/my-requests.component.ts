@@ -60,7 +60,7 @@ export class MyRequestsComponent implements OnInit {
       {
         next: (response) => {
           this.myRequestMessage = '';
-          this.currentMyRequests = response;
+          this.currentMyRequests = response.sort((a, b) => (a.requestId - b.requestId));
           this.currentPendRequests = [];
           this.currentResRequests = [];
           for(let item of response) {
