@@ -71,7 +71,7 @@ export class ViewEmployeesComponent implements OnInit {
       {
         next: (response) => {
           this.userMessage = '';
-          this.currentAllEmployees = response;
+          this.currentAllEmployees = response.sort((a, b) => (a.userId - b.userId));
           this.displayAll = true;
           this.reassign()
         },
@@ -113,7 +113,7 @@ export class ViewEmployeesComponent implements OnInit {
       {
         next: (response) => {
           this.userRequestMessage = '';
-          this.currentEmpRequests = response;
+          this.currentEmpRequests = response.sort((a, b) => (a.requestId - b.requestId));
           this.displayAction = false;
           this.displayAll = false;
           this.displayEmpReqs = true;
